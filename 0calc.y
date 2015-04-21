@@ -21,7 +21,7 @@ expr    : term
         | expr '-' term     { $$ = $1 - $3; }
         ;
 
-term    : factor            { $$ = $1; }
+term    : factor
         | term '*' factor   { $$ = $1 * $3; }
         | term '/' factor   { $$ = $1 / $3; }
         ;
