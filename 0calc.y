@@ -9,30 +9,27 @@ void yyerror(char *);
 
 %%
 
-lines   : line
-        | lines line
+lines   : lines line
+        | /* NULL */
         ;
 
-line    : expr '\n'     { printf(">> %d\n", $1); }
+line    : expr '\n'         { printf(">> %d\n", $1); }
         ;
 
 expr    : term
-        | expr '+' expr { $$ = $1 + $3; }
-        | expr '-' expr { $$ = $1 - $3; }
+        | expr '+' term     { $$ = $1 + $3; }
+        | expr '-' term     { $$ = $1 - $3; }
         ;
 
-term    : factor        { $$ = $1; }
-        | term '*' term { $$ = $1 * $3; }
-        | term '/' term { $$ = $1 / $3; }
+term    : factor            { $$ = $1; }
+        | term '*' factor   { $$ = $1 * $3; }
+        | term '/' factor   { $$ = $1 / $3; }
         ;
 
-factor  : '(' expr ')'  { $$ = $2; }
-        | number        { $$ = $1; }
+factor  : '(' expr ')'      { $$ = $2; }
+        | NUMBER
         ;
 
-number  : NUMBER
-        | '-' NUMBER
-        ;
 %%
 
 void
