@@ -13,7 +13,7 @@ lines   : line
         | lines line
         ;
 
-line    : expr '\n' { printf(">> %d\n", $1); }
+line    : expr '\n'     { printf(">> %d\n", $1); }
         ;
 
 expr    : term
@@ -21,13 +21,13 @@ expr    : term
         | expr '-' expr { $$ = $1 - $3; }
         ;
 
-term    : factor            { $$ = $1; }
-        | factor '*' factor { $$ = $1 * $3; }
-        | factor '/' factor { $$ = $1 / $3; }
+term    : factor        { $$ = $1; }
+        | term '*' term { $$ = $1 * $3; }
+        | term '/' term { $$ = $1 / $3; }
         ;
 
-factor  : '(' expr ')'      { $$ = $2; }
-        | number            { $$ = $1; }
+factor  : '(' expr ')'  { $$ = $2; }
+        | number        { $$ = $1; }
         ;
 
 number  : NUMBER
