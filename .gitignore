@@ -1,5 +1,6 @@
 /.deps
 /0calc
+/0calc2
 /0calc-*.*.*.tar.gz
 /Makefile
 /Makefile.in
@@ -17,6 +18,8 @@
 /missing
 /parser.c
 /parser.h
+/parser2.c
+/parser2.h
 /stamp-h1
 /ylwrap
 
