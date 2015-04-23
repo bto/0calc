@@ -15,7 +15,7 @@ extern int yylval;
                     return *yytext;
                 }
 
-[ \t\n]+        ;   /* ignore whitespace */
+[ \t]+          ;   /* ignore whitespace */
 
 %%
 

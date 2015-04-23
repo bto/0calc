@@ -14,6 +14,7 @@ lines   : lines line
         ;
 
 line    : expr '\n'         { printf(">> %d\n", $1); }
+        | '\n'
         ;
 
 expr    : term
@@ -28,6 +29,7 @@ term    : factor
 
 factor  : '(' expr ')'      { $$ = $2; }
         | NUMBER
+        | '-' NUMBER        { $$ = -$2; }
         ;
 
 %%
